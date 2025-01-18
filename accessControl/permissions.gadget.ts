@@ -16,14 +16,6 @@ export const permissions: GadgetPermissions = {
         action: true,
       },
       models: {
-        test: {
-          read: true,
-          actions: {
-            create: true,
-            delete: true,
-            update: true,
-          },
-        },
         user: {
           read: {
             filter: "accessControl/filters/user/tenant.gelly",
@@ -35,6 +27,14 @@ export const permissions: GadgetPermissions = {
             signOut: {
               filter: "accessControl/filters/user/tenant.gelly",
             },
+          },
+        },
+        userstorage: {
+          read: true,
+          actions: {
+            create: true,
+            delete: true,
+            update: true,
           },
         },
       },
@@ -50,6 +50,11 @@ export const permissions: GadgetPermissions = {
             signIn: true,
             signUp: true,
             verifyEmail: true,
+          },
+        },
+        userstorage: {
+          actions: {
+            create: true,
           },
         },
       },

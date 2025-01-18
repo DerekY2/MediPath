@@ -1,7 +1,7 @@
 .app {
   width: 100vw;
   height: calc(100vh - 80px);
-  background-image: url('bkg.png');
+  background-image: url('bluekg.png');
   background-size: cover; /* Ensures the image covers the entire screen */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat;
@@ -21,7 +21,7 @@
 }
 
 .info-box {
-  background-color: #520c98; /* Light gray background */
+  background-color: #b0c5ff;
   border: 1px solid #0000; /* Subtle border */
   padding: 40px; /* Add more spacing inside the box */
   margin: 20px 0; /* Add space above and below the box */
@@ -51,7 +51,7 @@
   line-height: 30px;
   gap: 8px;
   flex-direction: column;
-  color: #fff;
+  color: #2720ff;
 }
 
 .info-box h3 {
@@ -70,7 +70,7 @@
   line-height: 30px;
   gap: 8px;
   flex-direction: column;
-  color: #fff;
+  color: #587dff;
 }
 /* Text paragraph styles */
 .info-box p {
@@ -79,11 +79,12 @@
   margin-bottom: 30px; /* Space below paragraphs */
 }
 
-/* Button group styling */
 .button-group {
   display: flex;
   flex-wrap: wrap; /* Allow buttons to wrap to the next line */
   gap: 15px; /* Space between buttons */
+  align-items: center; /* Vertically center the buttons */
+  justify-content: center; /* Horizontally center the buttons */
 }
 
 /* Individual button styling */
@@ -98,7 +99,7 @@ input[type="checkbox"] {
 }
 
 .button {
-  background-color: #99ocdb; /* Light purple background */
+  background-color: #99ocdb; 
   border: 2px solid #fff; /* Slightly thicker border */
   padding: 15px 30px; /* Bigger button size */
   border-radius: 8px; /* Rounded corners */
@@ -109,8 +110,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + .button {
-  background-color: #fff; /* Darker purple when selected */
-  color: #111237; /* White text when selected */
+  background-color: #67dcff;
+  color: #fff; /* White text when selected */
 }
 
 /* Submit button styling */
@@ -246,7 +247,7 @@ button {
 
 .header {
   display: flex;
-  background-color: #111237;
+  background-color: #fff;
   width: 100%;
   padding: 30px 50px 21px 49px;
   justify-content: space-between;
@@ -265,7 +266,7 @@ button {
 }
 
 .headertitle {
-  color: white !important;
+  color: #587dff !important;
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
