@@ -16,6 +16,14 @@ export const permissions: GadgetPermissions = {
         action: true,
       },
       models: {
+        movie: {
+          read: true,
+          actions: {
+            create: true,
+            delete: true,
+            update: true,
+          },
+        },
         user: {
           read: {
             filter: "accessControl/filters/user/tenant.gelly",
