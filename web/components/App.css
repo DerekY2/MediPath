@@ -1,7 +1,10 @@
 .app {
   width: 100vw;
   height: calc(100vh - 80px);
-  background-image: url("https://assets.gadget.dev/assets/default-app-assets/default-background.svg");
+  background-image: url('bkg.png');
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
   left: 0;
   top: 80px;
   position: fixed;
@@ -15,8 +18,125 @@
   justify-content: center;
   width: 100vw;
   height: 100%;
-  background: radial-gradient(ellipse at center, white 0.5rem, rgb(0, 0, 0, 0) 40rem);
 }
+
+.info-box {
+  background-color: #520c98; /* Light gray background */
+  border: 1px solid #0000; /* Subtle border */
+  padding: 40px; /* Add more spacing inside the box */
+  margin: 20px 0; /* Add space above and below the box */
+  border-radius: 12px; /* Smooth, rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for a 3D effect */
+  font-family: system-ui, sans-serif;
+  color: #fff;
+  max-width: 800px; /* Limit the form width */
+  margin-left: auto; /* Center the box */
+  margin-right: auto; /* Center the box */
+
+}
+
+.info-box h2 {
+  margin-bottom: 20px; /* Space below headings */
+  display: flex;
+  width: 100%;
+  padding: 21px 50px 21px 49px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: system-ui;
+  z-index: 1;
+  position: relative;
+  margin-top: 20px; 
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 30px;
+  gap: 8px;
+  flex-direction: column;
+  color: #fff;
+}
+
+.info-box h3 {
+  margin-bottom: 20px; /* Space below headings */
+  display: flex;
+  width: 100%;
+  padding: 21px 50px 21px 49px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: system-ui;
+  z-index: 1;
+  position: relative;
+  margin-top: 20px; 
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+  gap: 8px;
+  flex-direction: column;
+  color: #fff;
+}
+/* Text paragraph styles */
+.info-box p {
+  font-size: 1.2rem; /* Slightly larger text */
+  line-height: 1.6; /* More line spacing */
+  margin-bottom: 30px; /* Space below paragraphs */
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+  gap: 15px; /* Space between buttons */
+}
+
+/* Individual button styling */
+label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  display: none; /* Hide the default checkbox */
+}
+
+.button {
+  background-color: #99ocdb; /* Light purple background */
+  border: 2px solid #fff; /* Slightly thicker border */
+  padding: 15px 30px; /* Bigger button size */
+  border-radius: 8px; /* Rounded corners */
+  text-align: center;
+  font-size: 1rem; /* Button text size */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+input[type="checkbox"]:checked + .button {
+  background-color: #fff; /* Darker purple when selected */
+  color: #111237; /* White text when selected */
+}
+
+/* Submit button styling */
+.submit-button {
+  background-color: #7854c4;
+  color: #fff;
+  border: none;
+  padding: 15px 30px; /* Bigger button size */
+  font-size: 1.2rem; /* Larger font for the submit button */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #5a3fa2; /* Darker purple on hover */
+}
+
+  .button {
+    padding: 10px 20px; /* Reduce button size on smaller screens */
+  }
+
+  .submit-button {
+    padding: 10px 20px;
+  }
+
 
 .app-logo {
   height: 5rem;
@@ -45,14 +165,18 @@
   font-family: system-ui;
 }
 
-.app-link {
+.app-introduction {
+  margin-top: 20px; 
+  position: relative; 
   font-family: system-ui;
   font-weight: bold;
   font-size: larger;
+  line-height: 30px;
   gap: 8px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  color: purple;
 }
 
 .environment {
@@ -122,16 +246,16 @@ button {
 
 .header {
   display: flex;
-  background-color: #fff;
+  background-color: #111237;
   width: 100%;
-  height: 80px;
-  padding: 21px 50px 21px 49px;
+  padding: 30px 50px 21px 49px;
   justify-content: space-between;
   align-items: center;
   font-family: system-ui;
   z-index: 1;
   position: relative;
   font-size: 14px;
+
 }
 
 .header-content {
@@ -140,8 +264,8 @@ button {
   gap: 16px;
 }
 
-.logo {
-  color: #000 !important;
+.headertitle {
+  color: white !important;
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
@@ -290,16 +414,3 @@ button {
   color: #fff !important;
   background:#000;
 }
-
-.custom-button:hover{
-  opacity:80%;
-  transition: all 200ms;
-}
-
-.form-title{
-  font-size:1.5rem;
-  font-weight: 600;
-  margin-bottom:0;
-  padding-bottom:8;
-}
-

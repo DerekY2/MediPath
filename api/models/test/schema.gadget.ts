@@ -8,5 +8,6 @@ export const schema: GadgetModel = {
   storageKey: "JgBJg-U5UU1f",
   fields: {
     question: { type: "string", storageKey: "A1Ojz_mpVcQ0" },
+    test: { type: "string", storageKey: "yY57wenE4cpM" },
   },
 };

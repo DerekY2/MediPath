@@ -1,16 +1,38 @@
+import { api } from "../api";
+
 
 export default function () {
+  
   return (
     <>
-      <div className="app-link">
-        <img src="https://assets.gadget.dev/assets/default-app-assets/react-logo.svg" className="app-logo" alt="logo" />
-        <span>You are now signed out of {process.env.GADGET_APP} &nbsp;</span>
-      </div>
-      <div>
-        <p className="description">Start building your app&apos;s signed out area</p>
-        <a href="/edit/files/web/routes/index.jsx" target="_blank" rel="noreferrer" style={{ fontWeight: 500 }}>
-          web/routes/index.jsx
-        </a>
+        <div className="info-box">
+          <h2>Welcome to MediPath</h2>
+          <p>The most trusted and accurate tool to recieve consultation for diagnosis. Start entering your information on the form below to get started!  </p>
+        <h3>Choose Your Symptoms</h3>
+        <form>
+          <div className="button-group">
+            <label>
+              <input type="checkbox" name="symptom" value="fever" />
+              <span className="button">Fever</span>
+            </label>
+            <label>
+              <input type="checkbox" name="symptom" value="cough" />
+              <span className="button">Cough</span>
+            </label>
+            <label>
+              <input type="checkbox" name="symptom" value="fatigue" />
+              <span className="button">Fatigue</span>
+            </label>
+            <label>
+              <input type="checkbox" name="symptom" value="headache" />
+              <span className="button">Headache</span>
+            </label>
+              <button type="submit">Submit</button>
+          </div>
+            <h3>Please enter any other relevant information </h3>
+            <input type = "text"></input>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </>
   );
