@@ -16,6 +16,14 @@ export const permissions: GadgetPermissions = {
         action: true,
       },
       models: {
+        entry: {
+          read: true,
+          actions: {
+            create: true,
+            delete: true,
+            update: true,
+          },
+        },
         user: {
           read: {
             filter: "accessControl/filters/user/tenant.gelly",
@@ -29,6 +37,10 @@ export const permissions: GadgetPermissions = {
             },
           },
         },
+      },
+      actions: {
+        importData: true,
+        mappings: true,
       },
     },
     unauthenticated: {
