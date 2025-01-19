@@ -65,7 +65,7 @@ export default function () {
 
     return(
       <div className="genTextContainer">
-        <button className="button analyse-btn" onClick={()=>void sendPrompt()}>Analyse: {selected}</button>
+        <button className="button analyse-btn" onClick={()=>void sendPrompt()}>Analyse{selected?`: ${selected}`:''}</button>
         {error && <p className="error">{error.message}</p>}
         {fetching && <div className="loader"/>}
         {data && (
@@ -86,7 +86,8 @@ export default function () {
         {error && <div style={{color: "red"}}>Error: {error.message}</div>}
         <form onSubmit={async (e) => {
             e.preventDefault();
-            console.log('input:',symptoms,'\ntext:',textInput)
+            console.log('input:',symptoms,'\ntext:',textInput);
+            setSelected('')
             await submit();
             setIsReset(true);
           }}>
