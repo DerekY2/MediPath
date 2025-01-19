@@ -79,6 +79,56 @@ export default function () {
               />
                <span className="button">Headache</span>
              </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="vomiting"
+                checked={symptoms.includes("vomiting")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Vomiting</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="headache"
+                checked={symptoms.includes("headache")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Loss of Apetite</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="mood swings"
+                checked={symptoms.includes("mood swings")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Mood Swings</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="dizziness"
+                checked={symptoms.includes("dizziness")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Dizziness</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="rash"
+                checked={symptoms.includes("rash")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Rash</span>
+             </label>
            </div>
           <h3>Please enter any other relevant information</h3>
           <input 
@@ -86,7 +136,7 @@ export default function () {
             value={otherInfo}
             onChange={(e) => setOtherInfo(e.target.value)}
           />
-          <button type="submit" disabled={fetching}>
+          <button type="submit" className="button" disabled={fetching}>
             {fetching ? "Submitting..." : "Submit"}
           </button>
          </form>

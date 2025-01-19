@@ -76,10 +76,6 @@ const Header = () => {
         <div className="headertitle">MediPath</div>
       </a>
       <div className="header-content">
-        <SignedOut>
-          <Link to="/sign-in" style={{ color: "black" }}>Sign in</Link>
-          <Link to="/sign-up" style={{ color: "black" }}>Sign up</Link>
-        </SignedOut>
       </div>
     </div>
   );

@@ -11,6 +11,18 @@
   z-index: 0;
 }
 
+body {
+  min-height: 100vh; /* Ensure the body takes the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+.info-box {
+  flex-grow: 1; /* Allow content to expand and take available space */
+  padding: 20px;
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the container height */
+}
+
 .app-content {
   text-align: center;
   display: flex;
@@ -18,6 +30,24 @@
   justify-content: center;
   width: 100vw;
   height: 100%;
+}
+
+/* Style for the input box */
+input[type="text"] {
+  width: 100%; /* Make input box take full width */
+  padding: 12px 20px; /* Add padding for a larger input */
+  font-size: 1rem; /* Larger text size */
+  border: 2px solid #fff; /* Subtle border */
+  border-radius: 10px; /* Rounded corners */
+  box-sizing: border-box; /* Ensure padding does not cause overflow */
+  margin-bottom: 20px; /* Add space below the input */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Add a focus effect when the input is selected */
+input[type="text"]:focus {
+  border-color: #2720ff; /* Border color when focused */
+  outline: none; /* Remove default focus outline */
 }
 
 .info-box {
@@ -101,7 +131,7 @@ input[type="checkbox"] {
 .button {
   background-color: #99ocdb; 
   border: 2px solid #fff; /* Slightly thicker border */
-  padding: 15px 30px; /* Bigger button size */
+  padding: 10px 25px; /* Bigger button size */
   border-radius: 8px; /* Rounded corners */
   text-align: center;
   font-size: 1rem; /* Button text size */
@@ -116,7 +146,7 @@ input[type="checkbox"]:checked + .button {
 
 /* Submit button styling */
 .submit-button {
-  background-color: #7854c4;
+  background-color: #67dcff;
   color: #fff;
   border: none;
   padding: 15px 30px; /* Bigger button size */
@@ -125,18 +155,6 @@ input[type="checkbox"]:checked + .button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-.submit-button:hover {
-  background-color: #5a3fa2; /* Darker purple on hover */
-}
-
-  .button {
-    padding: 10px 20px; /* Reduce button size on smaller screens */
-  }
-
-  .submit-button {
-    padding: 10px 20px;
-  }
 
 
 .app-logo {
@@ -203,9 +221,6 @@ a {
   cursor: pointer;
 }
 
-button {
-  cursor: pointer;
-}
 
 .flex-horizontal{
   display: flex;
