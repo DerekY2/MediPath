@@ -390,6 +390,25 @@ a {
   background-color: #eee;
 }
 
+.github-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+.github-icon {
+  width: 50px; /* Adjust the size as needed */
+  height: 50px; /* Adjust the size as needed */
+  border-radius: 50%; /* Optional: make it circular */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a slight shadow */
+  transition: transform 0.3s ease; /* Optional: add a hover effect */
+}
+
+.github-icon:hover {
+  transform: scale(1.1); /* Optional: scale up on hover */
+}
+
 .signout-button {
   display: flex;
   padding: 8px 24px;
