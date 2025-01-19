@@ -41,6 +41,7 @@ export const permissions: GadgetPermissions = {
       actions: {
         importData: true,
         mappings: true,
+        queryEntries: true,
       },
     },
     unauthenticated: {
