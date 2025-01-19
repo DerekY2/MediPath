@@ -5,7 +5,7 @@ export const run = async ({ params, logger, api, connections }) => {
   if (!symptoms) {
     throw new Error("Entry is blank; please enter your symptoms");
   }
-
+  logger.info("symptoms:", symptoms)
   const response = await connections.openai.embeddings.create({
     input: symptoms,
     model: "text-embedding-ada-002",
@@ -17,17 +17,17 @@ export const run = async ({ params, logger, api, connections }) => {
         cosineSimilarityTo: response.data[0].embedding,
       },
     },
-    first: 1,
+    first: 4,
     select: {
       id: true,
       diagnosis: true,
     },
   });
   
-  // const filteredEntries = entries.filter(
-  //   (entry, index) => entries.findIndex((m) => m.diagnosis === entry.diagnosis) === index
-  // );
-  return entries;
+  const filteredEntries = entries.filter(
+    (entry, index) => entries.findIndex((m) => m.diagnosis === entry.diagnosis) === index
+  );
+  return filteredEntries;
   };
 
   export const params = {

@@ -1,11 +1,20 @@
-.app {
-  width: 100vw;
-  height: calc(100vh - 80px);
-  background-image: url("https://assets.gadget.dev/assets/default-app-assets/default-background.svg");
-  left: 0;
-  top: 80px;
-  position: fixed;
+body {
+  min-width: auto;
+  min-height:auto;
+  background: url('bluekg.png') fixed;
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  /* left: 0; */
+  /* top: 80px; */
+  /* position: fixed; */
   z-index: 0;
+}
+
+body {
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
 }
 
 .app-content {
@@ -13,9 +22,216 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  /* width: 100vw; */
   height: 100%;
-  background: radial-gradient(ellipse at center, white 0.5rem, rgb(0, 0, 0, 0) 40rem);
+}
+
+/* Style for the input box */
+input[type="text"], .symptomInput {
+  width: 100%; /* Make input box take full width */
+  padding: 12px 20px; /* Add padding for a larger input */
+  font-size: 1rem; /* Larger text size */
+  border: 2px solid #fff; /* Subtle border */
+  border-radius: 10px; /* Rounded corners */
+  box-sizing: border-box; /* Ensure padding does not cause overflow */
+  margin-bottom: 20px; /* Add space below the input */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Add a focus effect when the input is selected */
+input[type="text"]:focus, .symptomInput:focus  {
+  border-color: #2720ff; /* Border color when focused */
+  outline: none; /* Remove default focus outline */
+}
+
+.info-box {
+  background-color: #b0c5ff;
+  border: 1px solid #0000; /* Subtle border */
+  box-shadow: #000000;
+  padding: 20px 40px; /* Add more spacing inside the box */
+  margin: 0 0 0 20px; /* Add space above and below the box */
+  border-radius: 12px; /* Smooth, rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for a 3D effect */
+  font-family: system-ui, sans-serif;
+  color: #fff;
+  max-width: 800px; /* Limit the form width */
+  align-items: center;
+  flex-grow: 1;
+}
+
+.info-box h2 {
+  margin-bottom: 20px; /* Space below headings */
+  display: flex;
+  width: 100%;
+  padding: 15px 50px 15px 49px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: system-ui;
+  z-index: 1;
+  position: relative;
+  margin-top: 20px; 
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 30px;
+  gap: 8px;
+  flex-direction: column;
+  color: #2720ff;
+}
+
+
+.info-box h3 {
+  margin-bottom: 20px; /* Space below headings */
+  display: flex;
+  width: 100%;
+  padding: 15px 50px 15px 49px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: system-ui;
+  z-index: 1;
+  position: relative;
+  margin-top: 20px; 
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+  gap: 8px;
+  flex-direction: column;
+  color: #587dff;
+}
+/* Text paragraph styles */
+.info-box p {
+  font-size: 1.2rem; /* Slightly larger text */
+  line-height: 1.6; /* More line spacing */
+  margin-bottom: 30px; /* Space below paragraphs */
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+  gap: 15px; /* Space between buttons */
+  align-items: center; /* Vertically center the buttons */
+  justify-content: center; /* Horizontally center the buttons */
+}
+
+/* Individual button styling */
+label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  display: none; /* Hide the default checkbox */
+}
+
+.button {
+  border: 2px solid #fff; /* Slightly thicker border */
+  padding: 10px 25px; /* Bigger button size */
+  border-radius: 8px; /* Rounded corners */
+  text-align: center;
+  font-size: 1rem; /* Button text size */
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+
+.button:hover {
+  transform: scale(1.06);
+  background-color: #a4e8fc;
+}
+
+.button:active {
+  transform: scale(1.1);
+}
+.analyse-btn {
+  margin-top: 20px;
+  background-color: 2px solid #1a7427; /* Slightly thicker border */
+}
+
+.analyse-btn:hover {
+  background-color: 2px solid #2db541; /* Slightly thicker border */
+}
+
+input[type="checkbox"]:checked + .button {
+  background-color: #67dcff !important;
+  color: #fff; /* White text when selected */
+}
+
+input[type="checkbox"]:checked + .checkbox-btn {
+  background-color: #67dcff !important;
+  color: #fff; /* White text when selected */
+}
+
+/* Submit button styling */
+.submit-button {
+  background-color: #67dcff;
+  color: #fff;
+  border: none;
+  padding: 15px 30px; /* Bigger button size */
+  font-size: 1.2rem; /* Larger font for the submit button */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-group{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.reset-btn{
+  background: none;
+  border: none;
+}
+
+
+.generated-text {
+  border: 1px solid black;
+  background: #f5f5f5;
+  padding: 10px;
+  white-space: pre-wrap;
+  text-align: left;
+  color: black;
+  font-family: system-ui, sans-serif; /* Match the font family used in your app */
+  font-size: 1rem; /* Adjust the font size as needed */
+  line-height: 1.6; /* Adjust the line height for better readability */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for a 3D effect */
+}
+
+.genTexContainer{
+  max-width: 450px;
+  align-items: center;
+}
+
+.selection-group{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Optional: allows items to wrap to the next line if needed */
+  gap: 16px; 
+}
+
+
+.reset-btn:hover{
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: #ff4f4f;
+}
+
+.reset-btn:active{
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: #ff2424;
+}
+
+.spacer{
+  visibility: hidden;
 }
 
 .app-logo {
@@ -45,14 +261,18 @@
   font-family: system-ui;
 }
 
-.app-link {
+.app-introduction {
+  margin-top: 20px; 
+  position: relative; 
   font-family: system-ui;
   font-weight: bold;
   font-size: larger;
+  line-height: 30px;
   gap: 8px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  color: purple;
 }
 
 .environment {
@@ -78,9 +298,6 @@ a {
   cursor: pointer;
 }
 
-button {
-  cursor: pointer;
-}
 
 .flex-horizontal{
   display: flex;
@@ -124,14 +341,14 @@ button {
   display: flex;
   background-color: #fff;
   width: 100%;
-  height: 80px;
-  padding: 21px 50px 21px 49px;
+  padding: 30px 50px 21px 49px;
   justify-content: space-between;
   align-items: center;
   font-family: system-ui;
   z-index: 1;
   position: relative;
   font-size: 14px;
+
 }
 
 .header-content {
@@ -140,8 +357,8 @@ button {
   gap: 16px;
 }
 
-.logo {
-  color: #000 !important;
+.headertitle {
+  color: #587dff !important;
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
@@ -290,16 +507,3 @@ button {
   color: #fff !important;
   background:#000;
 }
-
-.custom-button:hover{
-  opacity:80%;
-  transition: all 200ms;
-}
-
-.form-title{
-  font-size:1.5rem;
-  font-weight: 600;
-  margin-bottom:0;
-  padding-bottom:8;
-}
-

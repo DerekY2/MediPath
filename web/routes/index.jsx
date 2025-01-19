@@ -1,17 +1,243 @@
+import { useState } from "react";
+import { useEffect } from 'react';
+import {
+  useGlobalAction,
+  useFetch,
+  useMaybeFindFirst,
+  useActionForm,
+} from "@gadgetinc/react";
+import { api } from "../api";
 
 export default function () {
+  const [symptoms, setSymptoms] = useState([]);
+  const [otherInfo, setOtherInfo] = useState("");
+
+  const handleSymptomChange = (event) => {
+    const symptom = event.target.value;
+    if (event.target.checked) {
+      setSymptoms([...symptoms, symptom]);
+    } else {
+      setSymptoms(symptoms.filter((s) => s !== symptom));
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await create({
+        otherinfo: `Selected Symptoms: ${symptoms.join(", ")}\nAdditional Info: ${otherInfo}`
+      });
+      // Reset form after successful submission
+      setSymptoms([]);
+      setOtherInfo("");
+    } catch (e) {
+      console.error("Error submitting form:", e);
+    }
+  };
+
+  // used to track the reset state of the form
+  const [isReset, setIsReset] = useState(true);
+  // state for the currently selected diagnosis
+  const [selected, setSelected] = useState("");
+  // action for diagnosing with symptoms
+  const { submit, register, actionData, error, formState, watch, reset } =
+    useActionForm(api.queryEntries);
+  const diagnoses = actionData;
+
+  // watch changes to the quote state in our form, and store in a variable
+  const textInput = watch("symptoms");
+
+  const AIGenerator = ({prediction, symptoms, textInput})=>{
+    const strSymptoms = symptoms.join(', ')
+    const allInput =  `${strSymptoms}. ${textInput}`
+    const parseBoldText = (text) => {
+      return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    };
+    console.log('symptoms to be generated:', symptoms,'\ninput:', textInput)
+    const [{data,fetching,error}, sendPrompt] = useFetch('/diagnosis',{
+      method:'post',
+      body: JSON.stringify({prediction, textInput}),
+      headers:{
+        "content-type":"application/json"
+      },
+      stream:'string'
+    })
+
+    return(
+      <div className="genTextContainer">
+        <button className="button analyse-btn" onClick={()=>void sendPrompt()}>Analyse: {selected}</button>
+        {error && <p className="error">{error.message}</p>}
+        {fetching && <div className="loader"/>}
+        {data && (
+          <pre className="generated-text">
+          {data}
+        </pre>
+        )}
+      </div>
+    )
+   }
+ 
   return (
-    <>
-      <div className="app-link">
-        <img src="https://assets.gadget.dev/assets/default-app-assets/react-logo.svg" className="app-logo" alt="logo" />
-        <span>You are now signed out of {process.env.GADGET_APP} &nbsp;</span>
-      </div>
-      <div>
-        <p className="description">Start building your app&apos;s signed out area</p>
-        <a href="/edit/files/web/routes/index.jsx" target="_blank" rel="noreferrer" style={{ fontWeight: 500 }}>
-          web/routes/index.jsx
-        </a>
-      </div>
-    </>
-  );
+    <> 
+      <div className="info-box">
+        <h2>Welcome to MediPath</h2>
+        <p>An AI-powered tool to recieve consultation for diagnosis. Enter your symptoms to get started!</p>
+        {/* <h3>Choose Your Symptoms</h3> */}
+        {error && <div style={{color: "red"}}>Error: {error.message}</div>}
+        <form onSubmit={async (e) => {
+            e.preventDefault();
+            console.log('input:',symptoms,'\ntext:',textInput)
+            await submit();
+            setIsReset(true);
+          }}>
+           {/* <div className="button-group hidden">
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="fever"
+                checked={symptoms.includes("fever")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Fever</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="cough"
+                checked={symptoms.includes("cough")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Cough</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="fatigue"
+                checked={symptoms.includes("fatigue")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Fatigue</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="headache"
+                checked={symptoms.includes("headache")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Headache</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="vomiting"
+                checked={symptoms.includes("vomiting")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Vomiting</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="Loss of Appetite"
+                checked={symptoms.includes("Loss of Appetite")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Loss of Appetite</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="mood swings"
+                checked={symptoms.includes("mood swings")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Mood Swings</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="dizziness"
+                checked={symptoms.includes("dizziness")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Dizziness</span>
+             </label>
+             <label>
+              <input 
+                type="checkbox" 
+                name="symptom" 
+                value="rash"
+                checked={symptoms.includes("rash")}
+                onChange={handleSymptomChange}
+              />
+               <span className="button">Rash</span>
+             </label>
+           </div> */}
+           {/* <input type="hidden" id="symptomsInput" name="symptoms" {...register("symptoms")} value={symptoms.join(', ')} /> */}
+          <h3>Tell us about your symptoms.</h3>
+          <input className="symptomInput"
+            placeholder="E.g. headache, I can't sleep..."
+            {...register("symptoms")}
+            disabled={formState.isSubmitting}
+          />
+          <div className="btn-group">
+          <button className="button reset-btn"
+              disabled={!formState.isDirty}
+              onClick={() => {
+                // reset the form
+                reset();
+                setSymptoms([]);
+                setIsReset(false);
+              }}>Reset</button>
+            <button type="submit" className="button" disabled={formState.isSubmitting}>
+              {formState.isSubmitting ? "Loading..." : "Submit"}
+            </button>
+            <button className="button spacer">test</button>
+            
+          </div>
+         </form>
+         {error && (
+        <p className="error">
+          WHOOPS! An error has occured!
+        </p>
+      )}
+      {diagnoses && (symptoms || textInput) && isReset && (
+        <div className="row">
+          <b>Results:</b>
+          <form action=""> 
+            <div className="row selection-group" style={{display: "flex", flexWrap: "wrap",textAlign: "left",gap: 16,}}>
+            {diagnoses.map((selection, i) => (
+            <label key={`select_option_${i}`} className="button checkbox-btn">
+              <input
+                type="checkbox"
+                checked={selection.diagnosis == selected}
+                value={selection.diagnosis}
+                onChange={(e) => {
+                  console.log('Selected diagnosis:', e.target.value, '\nchecked:',selection.diagnosis == selected);
+                  setSelected(e.target.value);
+                  e.checked = (selection.diagnosis == selected)
+                }}
+                id={selection.id}
+              />
+              <span>{selection.diagnosis}</span>
+              </label>
+            ))}
+            </div>
+          </form>
+        </div>
+      )}
+      {selected && (symptoms || textInput) && isReset && <AIGenerator prediction={selected} symptoms={symptoms} textInput={textInput}/>}
+       </div>
+     </>
+   );
 }
+
