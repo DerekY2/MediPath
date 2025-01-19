@@ -90,101 +90,10 @@ export default function () {
             await submit();
             setIsReset(true);
           }}>
-           {/* <div className="button-group hidden">
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="fever"
-                checked={symptoms.includes("fever")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Fever</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="cough"
-                checked={symptoms.includes("cough")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Cough</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="fatigue"
-                checked={symptoms.includes("fatigue")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Fatigue</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="headache"
-                checked={symptoms.includes("headache")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Headache</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="vomiting"
-                checked={symptoms.includes("vomiting")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Vomiting</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="Loss of Appetite"
-                checked={symptoms.includes("Loss of Appetite")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Loss of Appetite</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="mood swings"
-                checked={symptoms.includes("mood swings")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Mood Swings</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="dizziness"
-                checked={symptoms.includes("dizziness")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Dizziness</span>
-             </label>
-             <label>
-              <input 
-                type="checkbox" 
-                name="symptom" 
-                value="rash"
-                checked={symptoms.includes("rash")}
-                onChange={handleSymptomChange}
-              />
-               <span className="button">Rash</span>
-             </label>
-           </div> */}
            {/* <input type="hidden" id="symptomsInput" name="symptoms" {...register("symptoms")} value={symptoms.join(', ')} /> */}
           <h3>Tell us about your symptoms.</h3>
           <input className="symptomInput"
+          autoComplete="off"
             placeholder="E.g. headache, I can't sleep..."
             {...register("symptoms")}
             disabled={formState.isSubmitting}
