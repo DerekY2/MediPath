@@ -103,6 +103,7 @@ export default function () {
           <button className="button reset-btn"
               disabled={!formState.isDirty}
               onClick={() => {
+                e.preventDefault();
                 // reset the form
                 reset();
                 setSymptoms([]);
